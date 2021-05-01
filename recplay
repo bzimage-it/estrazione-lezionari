@@ -1,0 +1,181 @@
+#!/usr/bin/python3
+import sys
+import pyaudio
+from threading import Event
+import wave
+import os
+import argparse
+from pynput import keyboard 
+import atexit
+import subprocess, platform
+import getpass
+import pygame
+import sounddevice as sd
+
+oldtermattr = None
+def exit_handler():
+        # snippet from https://stackoverflow.com/questions/3850261/doing-something-before-program-exit
+        
+        if oldtermattr is not None:
+                print("Exit, restored term")
+                # termios.tcsetattr(fd, termios.TCSADRAIN, oldtermattr)
+                if platform.system()=="Windows":
+                        subprocess.Popen("cls", shell=True).communicate() #I like to use this instead of subprocess.call since for multi-word commands you can just type it out, granted this is just cls and subprocess.call should work fine 
+                else: #Linux and Mac
+                      #  print("\033c", end="")
+                        pass
+                pass
+        pass
+
+atexit.register(exit_handler)
+
+# disable echo
+try:
+        import termios
+        fd = sys.stdin.fileno()
+        # self.__oldTcAttr = termios.tcgetattr(fd)
+        oldtermattr = termios.tcgetattr(fd)
+        new = oldtermattr
+        new[3] = new[3] & ~termios.ECHO
+        termios.tcsetattr(fd, termios.TCSADRAIN, new)
+except ImportError:
+        pass 
+
+parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
+                                 description=f"""record a sound with replacement of last set of frames driven by keayboard
+
+use keys:
+ENTER     | tag current frame to be marked as "start the last recording window"
+BACKSPACE | cancel current recording window and restart recording from the tag
+ESC:      | stop recording and write out stream to given output filename
+
+note that frame 0 is tagged at the beginnig by default, so using BACKSPACE 
+as first key will replace whole recording.
+""")
+
+parser.add_argument("outputfile", 
+                    help="output filename, extention will be added '.wav'",
+                    default = "output" , nargs='?')
+parser.add_argument("-c", "--channels", type=int, choices=[1, 2],default=2,
+                    help="number of channels, default 2")
+parser.add_argument("-s", "--size", type=int, default=1024,
+                    help="chunch size, default 1024")
+parser.add_argument("-r", "--rate", type=int, default=44100,
+                    help="rate")
+args = parser.parse_args()
+# https://realpython.com/playing-and-recording-sound-python/
+CHUNK = args.size
+FORMAT = pyaudio.paInt16
+CHANNELS = args.channels
+RATE = args.rate
+if not args.outputfile.endswith('.wav'):
+        WAVE_OUTPUT_FILENAME = args.outputfile + ".wav"
+else:
+        WAVE_OUTPUT_FILENAME = args.outputfile
+
+tag = 0
+frame_index=0
+
+# snippet from:
+# https://www.pythonforthelab.com/blog/handling-and-sharing-data-between-threads/
+event_exit = Event()
+event_bkspace = Event()
+event_enter = Event()
+
+def on_press(key):
+    try:
+        # print('alphanumeric key {0} pressed'.format(key.char))
+        pass
+    except AttributeError:
+        # print('special key {0} pressed'.format(key))
+        pass
+
+def on_release(key):
+        # print('{0} released'.format(key))
+        if key == keyboard.Key.esc:
+                event_exit.set()
+        if key == keyboard.Key.backspace:
+                event_bkspace.set();
+        if key == keyboard.Key.enter:
+                event_enter.set();
+        return True
+
+
+if os.path.isfile(WAVE_OUTPUT_FILENAME):
+        os.system("aplay "+WAVE_OUTPUT_FILENAME)
+        sys.exit(0)
+
+
+# ...or, in a non-blocking fashion:
+listener = keyboard.Listener(on_press=on_press, on_release=on_release)
+listener.start()
+
+p = pyaudio.PyAudio()
+
+stream = p.open(format=FORMAT,
+                channels=CHANNELS,
+                rate=RATE,
+                input=True,
+                frames_per_buffer=CHUNK)
+
+print("recording into file " + WAVE_OUTPUT_FILENAME)
+
+frames = []
+event_enter.clear()
+source = sys.stdin.buffer
+
+while not event_exit.is_set():
+        # getpass.getpass(prompt='', stream=None)
+        # b = source.read()
+        # The event listener will be running in this block
+        if event_bkspace.is_set():
+                del frames[tag:]
+                print(f"\nRESTART FROM FRAME {tag}")
+                event_bkspace.clear()
+        if event_enter.is_set():
+                tag = frame_index
+                print(f" [TAGGED]")
+                event_enter.clear()                
+        
+        frame_index=len(frames)
+        print(f"\rFRAME {frame_index:>10}",end='')
+        data = stream.read(CHUNK)
+        frames.append(data)
+
+print(f"\nEXIT AT FRAME {frame_index}")        
+print("recording...")
+import subprocess
+
+rawdata = subprocess.check_output([
+    'sox', '-n', '-b', '16', '-e', 'signed', '-r', '44100',
+    '-c', '1', '-t', 'raw', '-', 'synth', '0.1', 'sin', '700'])
+
+# pygame.mixer.pre_init(frequency=44100, size=-16, channels=1)
+# pygame.mixer.pre_init(frequency=RATE, size=-16, channels=CHANNELS, allowedchanges=0)
+# pygame.init()
+joinedbuffer=b''.join(frames)
+# first = pygame.mixer.Sound(buffer=joinedbuffer)
+# pygame.mixer.Sound.play(first)
+
+# interesting:
+# https://python-sounddevice.readthedocs.io/en/0.4.1/examples.html#recording-with-arbitrary-duration
+# https://python-sounddevice.readthedocs.io/en/0.4.1/usage.html#callback-streams
+# print( "Audio recording complete , Playing recorded Audio")
+# sd.play(joinedbuffer , RATE)
+# sd.wait()
+
+
+
+
+stream.stop_stream()
+stream.close()
+p.terminate()
+
+wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+wf.setnchannels(CHANNELS)
+wf.setsampwidth(p.get_sample_size(FORMAT))
+wf.setframerate(RATE)
+wf.writeframes(joinedbuffer)
+wf.close()
+
+print("done")

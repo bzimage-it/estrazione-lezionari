@@ -1,2 +1,2 @@
 # bibbiatsapp
-Record and manage audio per "BibbiatsApp" project (bible lectures)
+Record and manage audio for "BibbiatsApp" project (bible lectures)

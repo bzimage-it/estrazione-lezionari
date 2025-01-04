@@ -21,9 +21,11 @@ Probabilmente non verrebbe violato il copyright se questo progetto pubblicasse i
 
 - distribuzione linux recente
 - comandi:
-- * bash
+  * bash
   * curl
   * pdftk
+ 
+ 
 
 
   

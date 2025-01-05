@@ -87,7 +87,8 @@ extract() {
 	spec+="$1 "
 	shift
     done
-    local newspec=$(echo "$spec" | perl -ne 's/([\d]+)/$1+$ENV{delta}/eog; s/_/ /og; print;')
+    export DELTA
+    local newspec=$(echo "$spec" | perl -ne 's/([\d]+)/$1+$ENV{DELTA}/eog; s/_/ /og; print;')
     local ofile="$1"
     local n=
     local str=
@@ -116,8 +117,12 @@ esac
 
 [[ ! -d $DIR ]] && echo "not a directory: $DIR" && exit 1
 
+echo ======================================
+echo $DIR
+echo ======================================
 echo "check commands:"
 which curl || abort 1 "curl command not available; install"
 which pdftk || abort 1 "curl command not available; install"
 echo "ok"
+
 source $DIR/exec.sh "$(dirname "$DIR")" || exit 3

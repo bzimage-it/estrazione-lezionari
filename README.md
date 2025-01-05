@@ -29,12 +29,12 @@ Probabilmente non verrebbe violato il copyright se questo progetto pubblicasse i
 
 nella directory ```spec``` è indicaa un'alberatura di directory che riproduce fedelmente la gerarchia dei lezionari.
 a ogni livello è presente uno script ```exec.sh``` che viene automaticamente eseguito mediante comando ```source``` di bash quando si indica la rispettiva directory.
-ciasuno di questi file include a sua volta (sempre tramite source) anche il file ```exec.sh`` di livello superiore (directory padre) e così via fino alla directory immediatamente sottostante ```spec```.
+ciasuno di questi file include a sua volta (sempre tramite source) anche il file ```exec.sh``` di livello superiore (directory padre) e così via fino alla directory immediatamente sottostante ```spec```.
 in questo modo ciascun livello inferiore eseguirà automaticamente i livelli superiori per prima cosa.
 
 # directory 'finali'
 
-la preenza di un file vuoto di nome 'final' delle directory di specifica marca la directory appunto come finale in modo che possa essere eseguita dallo script ```run_all.sh``` il quale invocherà il comando ```run.sh``` per tutte le directory di livello 'più profondo'
+la prsenza di un file vuoto di nome 'final' delle directory di specifica segnala che la directory è appunto consideraa come finale in modo che possa essere eseguita dallo script ```run_all.sh``` il quale invocherà il comando ```run.sh``` per tutte queste directory, di livello 'più profondo'.
 
 # come generare gli estratti
 
@@ -57,24 +57,24 @@ sintassi del comando run:
 
 ```bash run.sh <spec-dir> <prefix-mode>```
 
-* <spec-dir> è la directory di specifica, può essere a qualunque livello della directory spec. il path è cons
-* <prefix-mode> può valere una di queste stringhe
-* * PREFIX : indica di anteporre un prefisso di categoria sintentica al nome del file generato
-  * NOPREFIX : indica di non antepore alcun prefisso di categoria sintetica al nome del file generato
-  * BOTH : indica di generare entrambi i file, con e senza prefisso sintetico.
+* ```<spec-dir>``` è la directory di specifica, può essere a qualunque livello della directory spec. il path è cons
+* ```<prefix-mode>``` può valere una di queste stringhe
+* * ```PREFIX``` : indica di anteporre un prefisso di categoria sintentica al nome del file generato
+  * ```NOPREFIX``` : indica di non antepore alcun prefisso di categoria sintetica al nome del file generato
+  * ```BOTH``` : indica di generare entrambi i file, con e senza prefisso sintetico.
 
-il prefisso sintentico contiene la medesima informazione della directory di output ovvero la forma "breve" delle alberature. 
+il prefisso sintentico contiene la medesima informazione della directory di output ovvero la forma "breve" delle alberature, definita dentro gli script ```exec.sh```
 
 ## output
 
 Lo script produce in ```stdout``` i messaggi principali e in ```stderr``` quelli di dettaglio maggiormente verbosi. 
 Per diminuire la verbosità dei messaggi semplicemente redirezionare ```stderr``` su ```/dev/null```.
 
-In caso di 'abort' il messaggio di errore viene stampato sia su ```stdin``` che ```stdout```
+In caso di ```abort()``` il messaggio di errore viene stampato sia su ```stdin``` che ```stdout```.
 
 # requisiti dei file exec.sh
 
-*PRECISAZIONE:* qui nel contesto di ```exec.sh``` per 'directory corrente' si intende quella dove il file stesso è localizzato, non quella da cui è eseguito lo script ```run.sh```
+*PRECISAZIONE:* in questo contesto per _directory corrente_ si intende quella dove il file stesso è localizzato, non quella da cui è eseguito lo script ```run.sh```
 
 ## priorità al livello superiore
 
@@ -82,7 +82,7 @@ La prima istruzione deve essere:
 
 ```source $1/exec.sh $(dirname $1)```
 
-questo fa si che possa essere eseguito prima quello della directory superiore. Fa eccezione il file ```spec/exec.sh``` che è al livello più alto.
+questo fa si che possa essere eseguito prima quello della directory superiore. Fa eccezione il file ```spec/exec.sh``` che è al livello più alto (0) e non ha questa istruzione.
 
 ## variabili di ambiente
 
@@ -102,7 +102,7 @@ possono essere definite le seguenti variabili d'ambiente
 * *DELTA* , numero intero. Contiene la differenza di numerazione fra il PDF e la numerazione interna del documento. impostando questa variabile è possibile specificare in estrazione dei numeri più sensati e coerenti con la numerazione interna. Questa variabile viene tipicamente impostata più volte: quando sono presenti delle figure (che non sono numerate nei lezionari) è necessario incrementarla del numero di queste pagine presenti nell'estratto per riallineare la numerazione.
 * *N* , numero intero. Contiene il valore iniziale della numerazione automatica nei documenti generati (inizio del nome del file). il valore viene 'paddato' a 2 (printf "%02d").
 
-possono essere invocate le seguenti funzioni bash rese disponibili da ```run.sh```:
+possono essere invocate le seguenti funzioni ```bash``` rese disponibili da ```run.sh```:
 
 * ```download_master_pdf```
   (nessun parametro). se in precedenza sono state definite entrambe MASTER_PDF_URL e MASTER_PDF_MD5 provvede a garantire che il file master sia disponbile e sia coerente con la firma del MD5SUM dichiarata in MASTER_PDF_MD5.

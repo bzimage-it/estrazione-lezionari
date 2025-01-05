@@ -48,6 +48,8 @@ per eseguire tutte i livello finali dare semplicemente il comando:
 
 ```bash run_all.sh```
 
+gli output sono generati nella cartella ```output```. Questa non fa parte del repository e rimane a disposizione dell'utente.
+
 # comando run
 i comandi vanno sempre dati dalla directory base dove run.sh è contenuto.
 

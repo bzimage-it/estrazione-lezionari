@@ -1,7 +1,7 @@
 # the firt line "source" conf is always the same:
 source $1/exec.sh $(dirname $1)
 
-SHORT=TO
+SHORT=DPDS
 THISLEVEL=3
 LEVEL3=$SHORT
 N=1
@@ -9,28 +9,30 @@ N=1
 # imposto la differenza di numerazone iniziale fra quella "vera" del PDF
 # e quella mostata dalla prima pagina che voglio estrarre:
 
-# TEMPO ORDINARIO:
-DELTA=52
+# DAL PROPRIO DEI SANTI:
+DELTA=60
 
-# cifre arabe sono per mantenere l'ordine lessicografico,
-# quelle romane per consistenza con il lezionario:
-extract 265-268 02_II
-extract 269-275 03_III
-extract 276-281 04_IV
-extract 282-286 05_V
-extract 287-291 06_VI
-extract 292-296 07_VII
-extract 297-300 08_VIII
-extract 301-304 09_IX
-extract 305-309 10_X
-extract 310-315 11_XI
-extract 316-319 12_XII
-extract 320-324 13_XIII
-extract 325-330 14_XIV
-extract 331-335 15_XV
-extract 336-339 16_XVI
-extract 340-344 17_XVII
-extract 345-349 18_XVIII
+# cifre arabe iniziali sono ridondanti ma
+# per mantenere l'ordine lessicografico,
+# quelle romane se presenti per consistenza con il lezionario:
+extract 431-436 0202_2_FEB_PRESENTAZIONE_DEL_SIGNORE
+
+extract 437-446 0624_24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA
+extract 437-441 0624a_24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA_Alla_messa_vespertina_nella_vigilia
+extract 442-446 0624b_24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA_Alla_messa_del_giorno
+
+extract 447-457 0629_29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI
+extract 447-451 0629a_29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_vespertina_nella_vigilia
+extract 452-457 0629b_29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_del_giorno
+
+extract 458-461 0806_6_AGO_TRASFIGURAZIONE_DEL_SIGNORE
+
+
+
+
+
+
+
 
 # la precedente estrazione conteneva una pagina di figure non numerata,
 # aggiugiamo quindi 1 e riallineando così il delta per le prossime estrazioni:

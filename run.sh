@@ -67,8 +67,12 @@ download_master_pdf() {
 
 pdftk_cmd() {
     local odir="$1"
-    local prefix="$2"
+    local prefix=
     local ofile="$3"
+    
+    # Usa sed per sostituire due o più trattini con uno solo: (fix caller)
+    prefix=$(echo "$2" | sed -r 's/-{2,}/-/g')
+    
     local oo="${odir}/${prefix}${ofile}.pdf"
     mkdir -p $odir
     if [ -f "$oo" ]; then
@@ -96,12 +100,15 @@ extract() {
 	str+="\$LEVEL$n/"
     done
     local str2=$(eval echo "$str")
+    
+    # npad currently not used any more:
     local npad=
-    printf -v npad "%02d" "$N"
+    printf -v npad "%03d" "$N"
+    
     let N+=1
-    local odir="$OUTROOT/${str2}"    
-    [[ $PREFIXMODE == PREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" "$npad-${str2//\//-}-" "$ofile"
-    [[ $PREFIXMODE == NOPREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" "$npad-" "$ofile"
+    local odir="$OUTROOT/${str2}"
+    [[ $PREFIXMODE == PREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" "${str2//\//-}-" "$ofile"
+    [[ $PREFIXMODE == NOPREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" ""  "$ofile"
 }
 
 DIR="$1"

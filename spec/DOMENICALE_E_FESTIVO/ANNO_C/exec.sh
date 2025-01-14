@@ -1,4 +1,8 @@
+# the firt line "source" conf is always the same:
+source $1/exec.sh $(dirname $1)
+
 SHORT=C
+THISLEVEL=2
 LEVEL2=$SHORT
 
 MASTER_PDF_URL="https://liturgico.chiesacattolica.it/wp-content/uploads/sites/8/2018/11/23/Lezionario_Do_Fest_Anno_C_light.pdf"

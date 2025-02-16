@@ -15,17 +15,17 @@ DELTA=60
 # cifre arabe iniziali sono ridondanti ma
 # per mantenere l'ordine lessicografico,
 # quelle romane se presenti per consistenza con il lezionario:
-extract 431-436 0202_2_FEB_PRESENTAZIONE_DEL_SIGNORE
+extract 431-436 0202 2_FEB_PRESENTAZIONE_DEL_SIGNORE
 
-extract 437-446 0624_24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA
-extract 437-441 0624a_24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA_Alla_messa_vespertina_nella_vigilia
-extract 442-446 0624b_24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA_Alla_messa_del_giorno
+extract 437-446 0624 24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA
+extract 437-441 0624a 24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA_Alla_messa_vespertina_nella_vigilia
+extract 442-446 0624b 24_GIU_NATIVITA_DI_SAN_GIOVANNI_BATTISTA_Alla_messa_del_giorno
 
-extract 447-457 0629_29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI
-extract 447-451 0629a_29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_vespertina_nella_vigilia
-extract 452-457 0629b_29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_del_giorno
+extract 447-457 0629 29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI
+extract 447-451 0629a 29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_vespertina_nella_vigilia
+extract 452-457 0629b 29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_del_giorno
 
-extract 458-461 0806_6_AGO_TRASFIGURAZIONE_DEL_SIGNORE
+extract 458-461 0806 6_AGO_TRASFIGURAZIONE_DEL_SIGNORE
 
 
 

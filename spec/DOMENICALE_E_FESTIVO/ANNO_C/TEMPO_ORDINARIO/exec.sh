@@ -14,23 +14,23 @@ DELTA=52
 
 # cifre arabe sono per mantenere l'ordine lessicografico,
 # quelle romane per consistenza con il lezionario:
-extract 265-268 02_II
-extract 269-275 03_III
-extract 276-281 04_IV
-extract 282-286 05_V
-extract 287-291 06_VI
-extract 292-296 07_VII
-extract 297-300 08_VIII
-extract 301-304 09_IX
-extract 305-309 10_X
-extract 310-315 11_XI
-extract 316-319 12_XII
-extract 320-324 13_XIII
-extract 325-330 14_XIV
-extract 331-335 15_XV
-extract 336-339 16_XVI
-extract 340-344 17_XVII
-extract 345-349 18_XVIII
+extract 265-268 02 II
+extract 269-275 03 III
+extract 276-281 04 IV
+extract 282-286 05 V
+extract 287-291 06 VI
+extract 292-296 07 VII
+extract 297-300 08 VIII
+extract 301-304 09 IX
+extract 305-309 10 X
+extract 310-315 11 XI
+extract 316-319 12 XII
+extract 320-324 13 XIII
+extract 325-330 14 XIV
+extract 331-335 15 XV
+extract 336-339 16 XVI
+extract 340-344 17 XVII
+extract 345-349 18 XVIII
 
 # la precedente estrazione conteneva una pagina di figure non numerata,
 # aggiugiamo quindi 1 e riallineando così il delta per le prossime estrazioni:

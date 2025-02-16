@@ -87,13 +87,14 @@ pdftk_cmd() {
 
 extract() {
     local spec=
-    while [[ $# > 1 ]]; do
+    while [[ $# > 2 ]]; do
 	spec+="$1 "
 	shift
     done
     export DELTA
     local newspec=$(echo "$spec" | perl -ne 's/([\d]+)/$1+$ENV{DELTA}/eog; s/_/ /og; print;')
     local ofile="$1"
+    local extra="$2"
     local n=
     local str=
     for n in $(seq 1 $THISLEVEL); do
@@ -107,8 +108,8 @@ extract() {
     
     let N+=1
     local odir="$OUTROOT/${str2}"
-    [[ $PREFIXMODE == PREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" "${str2//\//-}-" "$ofile"
-    [[ $PREFIXMODE == NOPREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" ""  "$ofile"
+    [[ $PREFIXMODE == PREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" "${str2//\//-}-" "$ofile-$extra"
+    [[ $PREFIXMODE == NOPREFIX || $PREFIXMODE == BOTH ]] && pdftk_cmd "$odir" ""  "$ofile-$extra"
 }
 
 DIR="$1"

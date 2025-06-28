@@ -7,6 +7,10 @@ Questo progetto mira a:
 - estrarre da ciascuno di essi le letture di ciascuna liturgia in modo mirato
 - razionalizzare in una struttura appropriata di directory i file da rendere disponibili singolarmente secondo i critieri di partizionamento tipici della liturgia (tipo di lezionari, ciclo annuale, tempo liturgico ...)
 
+# posso vedere un risultato concreto ?
+
+Si, per vedere un possibile risultato dell'elaborazione di questo programma puoi visitare la url: https://www.bzimage.it/lect e navitare la directory (parziale) più recentemente generata da questo programma.
+
 # cosa NON pubblichiamo
 
 Probabilmente non verrebbe violato il copyright se questo progetto pubblicasse i singoli PDF così segnmentati. Tuttavia per ragioni di opportunità e semplicità ed evitare eventuali contestazioni, e in attesa di una maggiore chiarezza, in questo repository *non* verranno pubblicati i PDF, né quelli originari né quelli 'segmentati', ma solo le procedure per generarli.
@@ -174,7 +178,11 @@ extract 111-112 114-115 SOLENNITA_DI_MARIA_SANTISSIMA_MADRE_DI_DIO
 .....
 ```
 
+## Come darci una mano
 
+Se conosci il sistema linux, contattaci, puoi collaborare attivamente a sviluppare questo progetto. 
+
+Se *non conosci* linux o non ne hai dimestichezza puoi contribuire mediante un lavoro manuale che ci è necessario per calcolare la giusta impaginazione delle specifiche, sarà necessario qualche solo quale operaiozne di visualizzazione del PDF, con le opportune istruzioni. Contattaci !
   
 
 

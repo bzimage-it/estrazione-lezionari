@@ -174,7 +174,11 @@ extract 111-112 114-115 SOLENNITA_DI_MARIA_SANTISSIMA_MADRE_DI_DIO
 .....
 ```
 
+## Come darci una mano
 
+Se conosci il sistema linux, contattaci, puoi collaborare attivamente a sviluppare questo progetto. 
+
+Se *non conosci* linux o non ne hai dimestichezza puoi contribuire mediante un lavoro manuale che ci è necessario per calcolare la giusta impaginazione delle specifiche, sarà necessario qualche solo quale operaiozne di visualizzazione del PDF, con le opportune istruzioni. Contattaci !
   
 
 

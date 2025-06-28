@@ -7,6 +7,10 @@ Questo progetto mira a:
 - estrarre da ciascuno di essi le letture di ciascuna liturgia in modo mirato
 - razionalizzare in una struttura appropriata di directory i file da rendere disponibili singolarmente secondo i critieri di partizionamento tipici della liturgia (tipo di lezionari, ciclo annuale, tempo liturgico ...)
 
+# posso vedere un risultato concreto ?
+
+Si, per vedere un possibile risultato dell'elaborazione di questo programma puoi visitare la url: https://www.bzimage.it/lect e navitare la directory (parziale) più recentemente generata da questo programma.
+
 # cosa NON pubblichiamo
 
 Probabilmente non verrebbe violato il copyright se questo progetto pubblicasse i singoli PDF così segnmentati. Tuttavia per ragioni di opportunità e semplicità ed evitare eventuali contestazioni, e in attesa di una maggiore chiarezza, in questo repository *non* verranno pubblicati i PDF, né quelli originari né quelli 'segmentati', ma solo le procedure per generarli.

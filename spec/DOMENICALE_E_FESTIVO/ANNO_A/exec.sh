@@ -9,3 +9,8 @@ MASTER_PDF_URL="https://liturgico.chiesacattolica.it/wp-content/uploads/sites/8/
 MASTER_PDF_MD5=a3926bb6eaa492440da1cecf7bdaee39
 
 download_master_pdf
+N=1
+
+DELTA=2
+extract 15-58 OLM ORDINAMENTO_DELLE_LETTURE_DELLA_MESSA
+

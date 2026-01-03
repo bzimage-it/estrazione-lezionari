@@ -27,6 +27,28 @@ extract 452-457 0629b 29_GIU_SANTI_PIETRO_E_PAOLO_APOSTOLI_Alla_messa_del_giorno
 
 extract 458-461 0806 6_AGO_TRASFIGURAZIONE_DEL_SIGNORE
 
+DELTA=$((522-462))
+
+extract 462-470  0815  15_AGO_Assunzione_della_BVM
+extract 462-465  0815a 15_AGO_Assunzione_della_BVM_Alla_messa_vespertina_nella_vigilia
+extract 466-470  0815b 15_AGO_Assunzione_della_BVM_Alla_messa_del_giorno
+
+
+extract 471-474  0914 14_SET_Esaltazione_della_Santa_Croce
+extract 475-478  1101 1_NOV_Tutti_i_Santi
+extract 479-492  1102 2_NOV_Commemorazione_di_Tutti_i_fedeli_defunti
+extract 493-496  1109 9_NOV_Dedicazione_della_Basilica_Lateranense
+extract 497-501     1208 8_DIC_Immacolata_Concezione_della_BVM
+
+
+
+
+
+
+
+
+
+
 
 
 
